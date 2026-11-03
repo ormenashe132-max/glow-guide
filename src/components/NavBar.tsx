@@ -17,6 +17,12 @@ function NavBar() {
       >
         השגרה שלי
       </NavLink>
+      <NavLink
+        to="/ingredients"
+        className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+      >
+        בודקת רכיבים
+      </NavLink>
     </nav>
   )
 }
