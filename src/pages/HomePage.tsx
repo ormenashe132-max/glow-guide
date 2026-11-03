@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import ErrorMessage from '../components/ErrorMessage'
 import Loading from '../components/Loading'
 import ProductList from '../components/ProductList'
+import SearchBar from '../components/SearchBar'
 import { filterProducts } from '../data/filterProducts'
+import { searchProducts } from '../data/searchProducts'
 import type { Product } from '../types'
 
 const PRODUCTS_API_URL =
@@ -17,6 +19,8 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
+  const [searchText, setSearchText] = useState('')
+  const filteredProducts = searchProducts(products, searchText)
 
   useEffect(() => {
     async function loadProducts() {
@@ -50,7 +54,17 @@ function HomePage() {
       ) : error ? (
         <ErrorMessage onRetry={() => setRetryCount((count) => count + 1)} />
       ) : (
-        <ProductList products={products} />
+        <>
+          <SearchBar
+            searchText={searchText}
+            onSearchTextChange={setSearchText}
+          />
+          {filteredProducts.length > 0 ? (
+            <ProductList products={filteredProducts} />
+          ) : (
+            <p>לא נמצאו מוצרים</p>
+          )}
+        </>
       )}
     </main>
   )
