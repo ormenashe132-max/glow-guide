@@ -22,20 +22,25 @@ function IngredientsPage({
   return (
     <main>
       <h1>בודקת רכיבים</h1>
-      <label>
+      <label className="search-label">
         חיפוש לפי רכיב
-        <input
-          type="search"
-          value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
-        />
+        <span className="search-field">
+          <span className="search-icon" aria-hidden="true">
+            🔍
+          </span>
+          <input
+            type="search"
+            value={searchText}
+            onChange={(event) => setSearchText(event.target.value)}
+          />
+        </span>
       </label>
       {isLoading ? (
         <Loading />
       ) : error ? (
         <ErrorMessage onRetry={retry} />
       ) : searchText.trim() === '' ? (
-        <p>הקלידי שם של רכיב, למשל Niacinamide</p>
+        <p className="empty-state">הקלידי שם של רכיב, למשל Niacinamide</p>
       ) : matchingProducts.length > 0 ? (
         <ProductList
           products={matchingProducts}
@@ -43,7 +48,7 @@ function IngredientsPage({
           onToggleFavorite={onToggleFavorite}
         />
       ) : (
-        <p>לא נמצאו מוצרים</p>
+        <p className="empty-state">לא נמצאו מוצרים</p>
       )}
     </main>
   )

@@ -14,7 +14,7 @@ function ProductCard({
   onToggleFavorite,
 }: ProductCardProps) {
   return (
-    <article>
+    <article className="product-card">
       <FavoriteButton
         product={product}
         isFavorite={isFavorite}

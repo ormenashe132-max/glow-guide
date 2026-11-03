@@ -5,13 +5,18 @@ type SearchBarProps = {
 
 function SearchBar({ searchText, onSearchTextChange }: SearchBarProps) {
   return (
-    <label>
+    <label className="search-label">
       חיפוש לפי שם
-      <input
-        type="search"
-        value={searchText}
-        onChange={(event) => onSearchTextChange(event.target.value)}
-      />
+      <span className="search-field">
+        <span className="search-icon" aria-hidden="true">
+          🔍
+        </span>
+        <input
+          type="search"
+          value={searchText}
+          onChange={(event) => onSearchTextChange(event.target.value)}
+        />
+      </span>
     </label>
   )
 }

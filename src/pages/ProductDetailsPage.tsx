@@ -4,7 +4,6 @@ import ErrorMessage from '../components/ErrorMessage'
 import FavoriteButton from '../components/FavoriteButton'
 import Loading from '../components/Loading'
 import type { Product } from '../types'
-import './ProductDetailsPage.css'
 
 type ProductResponse = {
   status: number
@@ -95,21 +94,25 @@ function ProductDetailsPage({
   return (
     <main>
       <Link to="/">חזרה לרשימת המוצרים</Link>
-      <article>
-        <FavoriteButton
-          product={product}
-          isFavorite={routineProducts.some((item) => item.code === product.code)}
-          onToggle={onToggleFavorite}
-        />
-        <img
-          src={product.image_front_url}
-          alt={product.product_name}
-          className="product-details-image"
-        />
-        <h1>{product.product_name}</h1>
-        <p>{product.brands || 'מותג לא צוין'}</p>
-        <h2>רכיבים</h2>
-        <p>{product.ingredients_text || 'רשימת הרכיבים לא זמינה'}</p>
+      <article className="product-details">
+        <div className="product-details-media">
+          <FavoriteButton
+            product={product}
+            isFavorite={routineProducts.some((item) => item.code === product.code)}
+            onToggle={onToggleFavorite}
+          />
+          <img
+            src={product.image_front_url}
+            alt={product.product_name}
+            className="product-details-image"
+          />
+        </div>
+        <div className="product-details-info">
+          <h1>{product.product_name}</h1>
+          <p>{product.brands || 'מותג לא צוין'}</p>
+          <h2>רכיבים</h2>
+          <p>{product.ingredients_text || 'רשימת הרכיבים לא זמינה'}</p>
+        </div>
       </article>
     </main>
   )

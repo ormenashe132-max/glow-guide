@@ -13,7 +13,7 @@ function ProductList({
   onToggleFavorite,
 }: ProductListProps) {
   return (
-    <section>
+    <section className="product-grid">
       {products.map((product) => (
         <ProductCard
           key={product.code}

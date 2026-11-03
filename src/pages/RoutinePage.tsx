@@ -13,8 +13,12 @@ function RoutinePage({
   return (
     <main>
       <h1>השגרה שלי</h1>
+      <section className="routine-summary" aria-live="polite">
+        <span className="routine-count">{routineProducts.length}</span>
+        <span>מוצרים בשגרה שלך</span>
+      </section>
       {routineProducts.length === 0 ? (
-        <p>השגרה שלך ריקה</p>
+        <p className="empty-state">השגרה שלך ריקה</p>
       ) : (
         <ProductList
           products={routineProducts}
