@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
+import FavoriteButton from '../components/FavoriteButton'
 import Loading from '../components/Loading'
 import type { Product } from '../types'
 import './ProductDetailsPage.css'
@@ -10,7 +11,15 @@ type ProductResponse = {
   product?: Product
 }
 
-function ProductDetailsPage() {
+type ProductDetailsPageProps = {
+  routineProducts: Product[]
+  onToggleFavorite: (product: Product) => void
+}
+
+function ProductDetailsPage({
+  routineProducts,
+  onToggleFavorite,
+}: ProductDetailsPageProps) {
   const { id } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -87,6 +96,11 @@ function ProductDetailsPage() {
     <main>
       <Link to="/">חזרה לרשימת המוצרים</Link>
       <article>
+        <FavoriteButton
+          product={product}
+          isFavorite={routineProducts.some((item) => item.code === product.code)}
+          onToggle={onToggleFavorite}
+        />
         <img
           src={product.image_front_url}
           alt={product.product_name}

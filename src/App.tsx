@@ -1,15 +1,44 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import useRoutine from './hooks/useRoutine'
 import HomePage from './pages/HomePage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
+import RoutinePage from './pages/RoutinePage'
 
 function App() {
+  const { routineProducts, toggleProduct } = useRoutine()
+
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/items/:id" element={<ProductDetailsPage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              routineProducts={routineProducts}
+              onToggleFavorite={toggleProduct}
+            />
+          }
+        />
+        <Route
+          path="/items/:id"
+          element={
+            <ProductDetailsPage
+              routineProducts={routineProducts}
+              onToggleFavorite={toggleProduct}
+            />
+          }
+        />
+        <Route
+          path="/routine"
+          element={
+            <RoutinePage
+              routineProducts={routineProducts}
+              onToggleFavorite={toggleProduct}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   )

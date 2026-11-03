@@ -11,6 +11,12 @@ function NavBar() {
       >
         כל המוצרים
       </NavLink>
+      <NavLink
+        to="/routine"
+        className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+      >
+        השגרה שלי
+      </NavLink>
     </nav>
   )
 }

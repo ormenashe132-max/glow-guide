@@ -14,7 +14,12 @@ type ProductsResponse = {
   products: Product[]
 }
 
-function HomePage() {
+type HomePageProps = {
+  routineProducts: Product[]
+  onToggleFavorite: (product: Product) => void
+}
+
+function HomePage({ routineProducts, onToggleFavorite }: HomePageProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -60,7 +65,11 @@ function HomePage() {
             onSearchTextChange={setSearchText}
           />
           {filteredProducts.length > 0 ? (
-            <ProductList products={filteredProducts} />
+            <ProductList
+              products={filteredProducts}
+              routineProducts={routineProducts}
+              onToggleFavorite={onToggleFavorite}
+            />
           ) : (
             <p>לא נמצאו מוצרים</p>
           )}
