@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import useRoutine from './hooks/useRoutine'
 import HomePage from './pages/HomePage'
 import IngredientsPage from './pages/IngredientsPage'
+import NotFoundPage from './pages/NotFoundPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import RoutinePage from './pages/RoutinePage'
 
@@ -49,6 +50,7 @@ function App() {
             />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
