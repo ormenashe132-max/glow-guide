@@ -59,3 +59,17 @@
 > חשוב: בסך הכול לפחות 5 בדיקות Vitest שעוברות.
 
 ** בדקתי את tasks.md: יש 12 משימות, 7 בדיקות מתוכננות ו-test:ui. ביקשתי להוסיף את test:ui ואת הדרישה ל-5 בדיקות כי זה חובה.**
+## 2026-11-03
+
+**13:59 · copilot**
+
+> בצע את משימה 1 מ-tasks.md:
+> - צור type בשם Product בקובץ src/types.ts עם השדות code, product_name, brands, image_front_url, ingredients_text
+> - צור קובץ src/data/sampleProducts.json עם 5 מוצרים לדוגמה
+> - צור קומפוננטה ProductCard שמקבלת מוצר ב-props ומציגה תמונה, שם ומותג
+> - צור קומפוננטה ProductList שמקבלת רשימת מוצרים ומציגה ProductCard לכל אחד עם map ו-key לפי code
+> - כל קומפוננטה בקובץ נפרד בתיקייה src/components
+> - ב-App.tsx תחליף את התוכן של Vite ב-ProductList
+> לפני שאתה מתחיל, תציג לי תוכנית קצרה.
+
+** בדקתי בדפדפן שמופיעים 5 כרטיסים עם תמונה, שם ומותג. build ו-lint עברו. התמונות זמניות (דמה) עד משימה 3.**
