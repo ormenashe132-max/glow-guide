@@ -22,4 +22,8 @@ describe('filterProducts', () => {
   it('מסננת מוצר בלי תמונה', () => {
     expect(filterProducts([{ ...validProduct, image_front_url: '' }])).toEqual([])
   })
+
+  it('מסננת מוצר בלי רכיבים', () => {
+    expect(filterProducts([{ ...validProduct, ingredients_text: '' }])).toEqual([])
+  })
 })
