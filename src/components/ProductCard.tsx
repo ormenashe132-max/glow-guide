@@ -11,7 +11,7 @@ function ProductCard({ product }: ProductCardProps) {
       <article>
         <img src={product.image_front_url} alt={product.product_name} />
         <h2>{product.product_name}</h2>
-        <p>{product.brands}</p>
+        <p>{product.brands || 'מותג לא צוין'}</p>
       </article>
     </Link>
   )
