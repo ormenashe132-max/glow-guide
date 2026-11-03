@@ -9,66 +9,37 @@ const PRODUCTS_API_URL =
   'https://world.openbeautyfacts.org/api/v2/search?categories_tags_en=face-creams&fields=code,product_name,brands,image_front_url,ingredients_text&page_size=100'
 
 type ProductsResponse = {
-  products: unknown[]
-}
-
-function isProductsResponse(value: unknown): value is ProductsResponse {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'products' in value &&
-    Array.isArray(value.products)
-  )
+  products: Product[]
 }
 
 function HomePage() {
   const [products, setProducts] = useState<Product[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
 
   useEffect(() => {
-    const controller = new AbortController()
-
     async function loadProducts() {
       setIsLoading(true)
-      setError(null)
+      setError(false)
 
       try {
-        const response = await fetch(PRODUCTS_API_URL, {
-          signal: controller.signal,
-        })
+        const response = await fetch(PRODUCTS_API_URL)
 
         if (!response.ok) {
-          throw new Error(`בקשת המוצרים נכשלה (${response.status})`)
+          throw new Error()
         }
 
-        const data: unknown = await response.json()
-        if (!isProductsResponse(data)) {
-          throw new Error('מבנה נתוני המוצרים אינו תקין')
-        }
-
+        const data: ProductsResponse = await response.json()
         setProducts(filterProducts(data.products))
-      } catch (loadError) {
-        if (controller.signal.aborted) {
-          return
-        }
-
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : 'אירעה שגיאה לא צפויה',
-        )
+      } catch {
+        setError(true)
       } finally {
-        if (!controller.signal.aborted) {
-          setIsLoading(false)
-        }
+        setIsLoading(false)
       }
     }
 
     void loadProducts()
-
-    return () => controller.abort()
   }, [retryCount])
 
   return (
@@ -77,10 +48,7 @@ function HomePage() {
       {isLoading ? (
         <Loading />
       ) : error ? (
-        <ErrorMessage
-          message={error}
-          onRetry={() => setRetryCount((count) => count + 1)}
-        />
+        <ErrorMessage onRetry={() => setRetryCount((count) => count + 1)} />
       ) : (
         <ProductList products={products} />
       )}
