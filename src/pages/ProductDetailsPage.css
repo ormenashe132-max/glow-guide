@@ -1,0 +1,4 @@
+.product-details-image {
+  width: min(100%, 400px);
+  height: auto;
+}
