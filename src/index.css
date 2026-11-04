@@ -242,6 +242,23 @@ p {
   font-size: 0.84rem;
 }
 
+.product-card-concerns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.skin-concern-badge {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent-hover);
+  background: var(--accent-soft);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 .favorite-button {
   position: absolute;
   z-index: 1;
@@ -296,6 +313,15 @@ p {
 
 .product-details-info h2 {
   margin-top: 32px;
+}
+
+.skin-concern-matches {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+.skin-concern-matches li {
+  margin-bottom: 6px;
 }
 
 .free-from-badges {

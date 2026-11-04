@@ -1,0 +1,40 @@
+.skin-concern-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -16px 0 28px;
+}
+
+.skin-concern-button {
+  min-height: 38px;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  background: var(--card-background);
+  font-size: 0.9rem;
+}
+
+.skin-concern-button:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.skin-concern-button[aria-pressed='true'],
+.skin-concern-button[aria-pressed='true']:hover {
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+}
+
+@media (max-width: 700px) {
+  .skin-concern-filter {
+    gap: 7px;
+    margin-bottom: 24px;
+  }
+
+  .skin-concern-button {
+    padding-inline: 12px;
+    font-size: 0.84rem;
+  }
+}

@@ -8,6 +8,7 @@ import {
   FREE_FROM_OPTIONS,
   isProductFreeFrom,
 } from '../data/freeFrom'
+import { getSkinConcernMatches } from '../data/skinConcerns'
 import type { Product } from '../types'
 
 type ProductResponse = {
@@ -96,6 +97,8 @@ function ProductDetailsPage({
     )
   }
 
+  const skinConcernMatches = getSkinConcernMatches(product)
+
   return (
     <main>
       <Link to="/">חזרה לרשימת המוצרים</Link>
@@ -116,6 +119,18 @@ function ProductDetailsPage({
           <p>{product.brands || 'מותג לא צוין'}</p>
           <h2>רכיבים</h2>
           <p>{product.ingredients_text || 'רשימת הרכיבים לא זמינה'}</p>
+          <h2>מתאים ל...</h2>
+          {skinConcernMatches.length > 0 ? (
+            <ul className="skin-concern-matches">
+              {skinConcernMatches.map(({ concern, ingredients }) => (
+                <li key={concern}>
+                  {concern} · בזכות {ingredients.join(', ')}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>לא נמצאו רכיבים מוכרים</p>
+          )}
           {product.ingredients_text && (
             <div className="free-from-badges" aria-label="מאפייני רכיבים">
               {FREE_FROM_OPTIONS.filter((option) =>
