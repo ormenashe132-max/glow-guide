@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
+import HeroSection from '../components/HeroSection'
 import Loading from '../components/Loading'
 import ProductList from '../components/ProductList'
 import SearchBar from '../components/SearchBar'
@@ -20,27 +20,7 @@ function HomePage({ routineProducts, onToggleFavorite }: HomePageProps) {
 
   return (
     <main>
-      <section className="home-hero">
-        <h1>איך העור שלך היום?</h1>
-        <p>גלי את המוצרים והרכיבים שיעזרו לך להרגיש טוב בעור שלך.</p>
-        <Link className="hero-cta" to="/ingredients">
-          לבודקת הרכיבים
-        </Link>
-      </section>
-      <nav className="getting-started" aria-label="צעדים להתחלה">
-        <a className="getting-started-link" href="#product-list">
-          <span className="step-number">01</span>
-          <span>חפשי מוצר</span>
-        </a>
-        <Link className="getting-started-link" to="/ingredients">
-          <span className="step-number">02</span>
-          <span>בדקי מה יש בו</span>
-        </Link>
-        <Link className="getting-started-link" to="/routine">
-          <span className="step-number">03</span>
-          <span>בני את השגרה שלך</span>
-        </Link>
-      </nav>
+      <HeroSection />
       {isLoading ? (
         <Loading />
       ) : error ? (

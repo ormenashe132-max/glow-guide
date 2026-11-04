@@ -1,6 +1,7 @@
 import type { Product } from '../types'
 import { Link } from 'react-router-dom'
 import FavoriteButton from './FavoriteButton'
+import ProductImage from './ProductImage'
 
 type ProductCardProps = {
   product: Product
@@ -21,7 +22,10 @@ function ProductCard({
         onToggle={onToggleFavorite}
       />
       <Link to={`/items/${product.code}`}>
-        <img src={product.image_front_url} alt={product.product_name} />
+        <ProductImage
+          imageUrl={product.image_front_url}
+          alt={product.product_name}
+        />
         <h2>{product.product_name}</h2>
         <p>{product.brands || 'מותג לא צוין'}</p>
       </Link>

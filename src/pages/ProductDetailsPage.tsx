@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import FavoriteButton from '../components/FavoriteButton'
 import Loading from '../components/Loading'
+import ProductImage from '../components/ProductImage'
 import type { Product } from '../types'
 
 type ProductResponse = {
@@ -101,10 +102,9 @@ function ProductDetailsPage({
             isFavorite={routineProducts.some((item) => item.code === product.code)}
             onToggle={onToggleFavorite}
           />
-          <img
-            src={product.image_front_url}
+          <ProductImage
+            imageUrl={product.image_front_url}
             alt={product.product_name}
-            className="product-details-image"
           />
         </div>
         <div className="product-details-info">
