@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import ErrorMessage from '../components/ErrorMessage'
+import FreeFromFilter from '../components/FreeFromFilter'
 import HeroSection from '../components/HeroSection'
 import Loading from '../components/Loading'
 import ProductList from '../components/ProductList'
 import SearchBar from '../components/SearchBar'
+import { filterProductsByFreeFrom } from '../data/freeFrom'
+import type { FreeFromOption } from '../data/freeFrom'
 import { searchProducts } from '../data/searchProducts'
 import useProducts from '../hooks/useProducts'
 import type { Product } from '../types'
@@ -16,7 +19,12 @@ type HomePageProps = {
 function HomePage({ routineProducts, onToggleFavorite }: HomePageProps) {
   const { products, isLoading, error, retry } = useProducts()
   const [searchText, setSearchText] = useState('')
-  const filteredProducts = searchProducts(products, searchText)
+  const [selectedOptions, setSelectedOptions] = useState<FreeFromOption[]>([])
+  const searchedProducts = searchProducts(products, searchText)
+  const filteredProducts = filterProductsByFreeFrom(
+    searchedProducts,
+    selectedOptions,
+  )
 
   return (
     <main>
@@ -31,6 +39,10 @@ function HomePage({ routineProducts, onToggleFavorite }: HomePageProps) {
           <SearchBar
             searchText={searchText}
             onSearchTextChange={setSearchText}
+          />
+          <FreeFromFilter
+            selectedOptions={selectedOptions}
+            onOptionsChange={setSelectedOptions}
           />
           {filteredProducts.length > 0 ? (
             <ProductList

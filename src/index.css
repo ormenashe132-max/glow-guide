@@ -298,6 +298,22 @@ p {
   margin-top: 32px;
 }
 
+.free-from-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.free-from-badge {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent-hover);
+  background: var(--accent-soft);
+  font-size: 0.85rem;
+}
+
 .search-label {
   width: min(100%, 420px);
   margin-inline: 0;

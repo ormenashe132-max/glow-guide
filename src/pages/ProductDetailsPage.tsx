@@ -4,6 +4,10 @@ import ErrorMessage from '../components/ErrorMessage'
 import FavoriteButton from '../components/FavoriteButton'
 import Loading from '../components/Loading'
 import ProductImage from '../components/ProductImage'
+import {
+  FREE_FROM_OPTIONS,
+  isProductFreeFrom,
+} from '../data/freeFrom'
 import type { Product } from '../types'
 
 type ProductResponse = {
@@ -112,6 +116,17 @@ function ProductDetailsPage({
           <p>{product.brands || 'מותג לא צוין'}</p>
           <h2>רכיבים</h2>
           <p>{product.ingredients_text || 'רשימת הרכיבים לא זמינה'}</p>
+          {product.ingredients_text && (
+            <div className="free-from-badges" aria-label="מאפייני רכיבים">
+              {FREE_FROM_OPTIONS.filter((option) =>
+                isProductFreeFrom(product, option),
+              ).map((option) => (
+                <span className="free-from-badge" key={option}>
+                  ✓ {option}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </article>
     </main>

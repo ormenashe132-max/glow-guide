@@ -1,0 +1,40 @@
+.free-from-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -16px 0 28px;
+}
+
+.free-from-button {
+  min-height: 38px;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  background: var(--card-background);
+  font-size: 0.9rem;
+}
+
+.free-from-button:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.free-from-button[aria-pressed='true'],
+.free-from-button[aria-pressed='true']:hover {
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+}
+
+@media (max-width: 700px) {
+  .free-from-filter {
+    gap: 7px;
+    margin-bottom: 24px;
+  }
+
+  .free-from-button {
+    padding-inline: 12px;
+    font-size: 0.84rem;
+  }
+}
