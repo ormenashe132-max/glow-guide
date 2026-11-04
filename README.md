@@ -1,75 +1,35 @@
-# React + TypeScript + Vite
+# Glow Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Glow Guide עוזרת לגלות מוצרי טיפוח, לבדוק את הרכיבים שלהם ולשמור מוצרים בשגרה אישית.
 
-Currently, two official plugins are available:
+## עמודים
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **כל המוצרים (`/`)** — צפייה במוצרים וחיפוש לפי שם.
+- **פרטי מוצר (`/items/:id`)** — צפייה בתמונה, בשם, במותג וברשימת הרכיבים.
+- **השגרה שלי (`/routine`)** — צפייה במוצרים שסומנו בלב ונשמרו בדפדפן.
+- **בודקת רכיבים (`/ingredients`)** — חיפוש מוצרים לפי רכיב.
+- **עמוד 404** — מוצג בכניסה לכתובת שאינה קיימת, עם קישור לדף הבית.
 
-## React Compiler
+## התקנה והרצה
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## בדיקות
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm test
+npm run test:ui
 ```
+
+`npm run test:ui` מציג בטרמינל כתובת עם token; יש לפתוח את הכתובת הזו בדפדפן כדי להשתמש בממשק הבדיקות.
+
+## מקור הנתונים
+
+המוצרים מגיעים מ־[Open Beauty Facts API](https://world.openbeautyfacts.org/api/v2/search?categories_tags_en=face-creams&fields=code,product_name,brands,image_front_url,ingredients_text&page_size=100). מוצגים רק מוצרים עם שם, תמונה ורשימת רכיבים.
+
+## טכנולוגיות
+
+React, TypeScript, Vite, React Router, Vitest ו־`localStorage`.
