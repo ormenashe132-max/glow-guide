@@ -9,6 +9,7 @@ import {
   isProductFreeFrom,
 } from '../data/freeFrom'
 import { getSkinConcernMatches } from '../data/skinConcerns'
+import { MAX_COMPARE_PRODUCTS } from '../data/toggleCompareProduct'
 import type { Product } from '../types'
 
 type ProductResponse = {
@@ -19,11 +20,15 @@ type ProductResponse = {
 type ProductDetailsPageProps = {
   routineProducts: Product[]
   onToggleFavorite: (product: Product) => void
+  compareProducts: Product[]
+  onToggleCompare: (product: Product) => void
 }
 
 function ProductDetailsPage({
   routineProducts,
   onToggleFavorite,
+  compareProducts,
+  onToggleCompare,
 }: ProductDetailsPageProps) {
   const { id } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
@@ -98,6 +103,9 @@ function ProductDetailsPage({
   }
 
   const skinConcernMatches = getSkinConcernMatches(product)
+  const isCompared = compareProducts.some((item) => item.code === product.code)
+  const isCompareLimitReached =
+    !isCompared && compareProducts.length >= MAX_COMPARE_PRODUCTS
 
   return (
     <main>
@@ -117,6 +125,18 @@ function ProductDetailsPage({
         <div className="product-details-info">
           <h1>{product.product_name}</h1>
           <p>{product.brands || 'מותג לא צוין'}</p>
+          <div className="compare-product-action">
+            <button
+              type="button"
+              onClick={() => onToggleCompare(product)}
+              disabled={isCompareLimitReached}
+            >
+              {isCompared ? 'הסר מההשוואה' : 'הוסף להשוואה'}
+            </button>
+            {isCompareLimitReached && (
+              <small>אפשר להשוות עד 3 מוצרים</small>
+            )}
+          </div>
           <h2>רכיבים</h2>
           <p>{product.ingredients_text || 'רשימת הרכיבים לא זמינה'}</p>
           <h2>מתאים ל...</h2>

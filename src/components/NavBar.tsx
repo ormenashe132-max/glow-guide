@@ -31,6 +31,14 @@ function NavBar() {
       >
         בודקת רכיבים
       </NavLink>
+      <NavLink
+        to="/compare"
+        className={({ isActive }) =>
+          isActive ? 'nav-link nav-link-active' : 'nav-link'
+        }
+      >
+        השוואה
+      </NavLink>
     </nav>
   )
 }
