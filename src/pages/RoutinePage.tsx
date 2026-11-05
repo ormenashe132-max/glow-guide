@@ -1,4 +1,6 @@
 import ProductList from '../components/ProductList'
+import RoutineWarnings from '../components/RoutineWarnings'
+import { findRoutineConflicts } from '../data/routineConflicts'
 import type { Product } from '../types'
 
 type RoutinePageProps = {
@@ -17,6 +19,9 @@ function RoutinePage({
         <span className="routine-count">{routineProducts.length}</span>
         <span>מוצרים בשגרה שלך</span>
       </section>
+      {routineProducts.length >= 2 && (
+        <RoutineWarnings conflicts={findRoutineConflicts(routineProducts)} />
+      )}
       {routineProducts.length === 0 ? (
         <p className="empty-state">השגרה שלך ריקה</p>
       ) : (
